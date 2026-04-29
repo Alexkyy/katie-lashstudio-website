@@ -117,20 +117,55 @@ nav.scrolled{padding:16px 64px}
 .gallery-header{margin-bottom:60px}
 .gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
 .gi{background:var(--warm);overflow:hidden;position:relative}
+.gi::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,rgba(255,255,255,.08),rgba(255,255,255,.28),rgba(255,255,255,.08));
+  background-size:200% 100%;
+  opacity:0;
+  transition:opacity .25s ease;
+  pointer-events:none;
+}
+.gi.is-loading::before{opacity:1;animation:galleryShimmer 1.4s linear infinite}
+.gi.is-error::before{opacity:0}
 .gi:nth-child(1){grid-column:span 5;grid-row:span 2;min-height:520px}
 .gi:nth-child(2){grid-column:span 4}
 .gi:nth-child(3){grid-column:span 3}
 .gi:nth-child(4){grid-column:span 7}
 .gi:nth-child(5){grid-column:span 5}
 .gi:nth-child(6){grid-column:span 4}
-.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;cursor:zoom-in}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease,opacity .45s ease,filter .45s ease;cursor:zoom-in}
+.gi.is-loading img{opacity:0;filter:blur(12px)}
+.gi.is-loaded img{opacity:1;filter:none}
+.gi.is-error img{opacity:0}
 .gi:hover img{transform:scale(1.04)}
 .gi-ph{width:100%;min-height:220px;height:100%;background:linear-gradient(135deg,var(--warm),var(--warm2));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--light);gap:10px;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase}
 .gi-hover{position:absolute;inset:0;background:rgba(42,34,32,.5);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;pointer-events:none}
 .gi:hover .gi-hover{opacity:1}
+.gi-error-label{
+  position:absolute;
+  inset:auto 18px 18px;
+  padding:10px 12px;
+  background:rgba(42,34,32,.78);
+  color:#fff;
+  font-size:.65rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .25s ease,transform .25s ease;
+  pointer-events:none;
+}
+.gi.is-error .gi-error-label{opacity:1;transform:none}
 .gallery-grid-uniform{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
 .gallery-grid-uniform .gi{aspect-ratio:1/1}
 .gallery-grid-uniform .gi img{width:100%;height:100%;object-fit:cover}
+
+@keyframes galleryShimmer{
+  from{background-position:200% 0}
+  to{background-position:-200% 0}
+}
 
 /* ABOUT */
 #about{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
@@ -819,10 +854,42 @@ overlay.innerHTML = '<img id="lb-img" style="max-width:90vw;max-height:90vh;obje
 document.body.appendChild(overlay);
 overlay.addEventListener('click', () => { overlay.style.display = 'none'; });
 
-document.querySelectorAll('.gi img').forEach(img => {
+document.querySelectorAll('.gi').forEach((item, index) => {
+  const img = item.querySelector('img');
+  if (!img) return;
+
+  item.classList.add('is-loading');
+  img.loading = index < 4 ? 'eager' : 'lazy';
+  img.decoding = 'async';
+  if (index === 0) img.fetchPriority = 'high';
+
+  const markLoaded = () => {
+    item.classList.remove('is-loading', 'is-error');
+    item.classList.add('is-loaded');
+  };
+
+  const markError = () => {
+    item.classList.remove('is-loading', 'is-loaded');
+    item.classList.add('is-error');
+    if (!item.querySelector('.gi-error-label')) {
+      const errorLabel = document.createElement('div');
+      errorLabel.className = 'gi-error-label';
+      errorLabel.textContent = 'Photo unavailable';
+      item.appendChild(errorLabel);
+    }
+  };
+
+  if (img.complete && img.naturalWidth > 0) {
+    markLoaded();
+  } else {
+    img.addEventListener('load', markLoaded, { once: true });
+    img.addEventListener('error', markError, { once: true });
+  }
+
   img.style.cursor = 'zoom-in';
   img.addEventListener('click', e => {
     e.stopPropagation();
+    if (item.classList.contains('is-error')) return;
     document.getElementById('lb-img').src = img.src;
     overlay.style.display = 'flex';
   });
