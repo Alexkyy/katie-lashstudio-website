@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Lash Studio by Katie — Editorial Lash Artistry · Lynnwood, WA</title>
 <meta name="description" content="Handcrafted lash extensions, hybrid sets and Korean lash lifts tailored to your eye shape. Certified lash artist in Lynnwood, WA."/>
-<meta name="theme-color" content="#211D1A"/>
+<meta name="theme-color" content="#241d18"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<!-- Display: Fraunces (editorial, high-contrast, characterful italics) · Body/UI: Geist -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Display: Playfair Display (high-contrast fashion serif + italics) · Body/UI: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 /*
   ────────────────────────────────────────────────────────────
@@ -25,276 +25,339 @@
 */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --paper:#f5f1ea;      /* warm off-white background */
-  --sand:#eae3d8;       /* secondary panel */
-  --sand-2:#ded5c7;     /* hairlines on sand */
-  --ink:#211d1a;        /* near-black */
-  --ink-soft:#3a332e;   /* softened ink */
-  --taupe:#8c7d70;      /* muted text / labels */
-  --taupe-lt:#b3a698;   /* faint text */
-  --line:#d9d0c4;       /* hairline on paper */
-  --accent:#c24a5e;     /* rosewood — the one playful moment */
-  --accent-dk:#a63a4d;
-  --font-display:'Fraunces', Georgia, serif;
-  --font-sans:'Geist','Helvetica Neue',Arial,sans-serif;
+  --paper:#efeae1;      /* warm textured paper (ref color board) */
+  --paper-2:#e6dfd3;    /* alternating panel */
+  --espresso:#241d18;   /* dark band bg (#32271F family, deepened) */
+  --espresso-2:#33291f; /* raised dark surface */
+  --brown:#623d28;      /* warm brown accent (#623D28) */
+  --brown-lt:#8a6a4d;
+  --grey:#d2d2d2;       /* cool grey (#D2D2D2) */
+  --ink:#1c1611;        /* near-black text on paper */
+  --taupe:#877868;      /* muted label text */
+  --cream:#f4f0e8;      /* text/pills on dark */
+  --cream-dim:rgba(244,240,232,.55);
+  --line:#d8cfc1;       /* hairline on paper */
+  --r:15px;             /* global rounding */
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-sans:'Inter','Helvetica Neue',Arial,sans-serif;
 }
 html{scroll-behavior:smooth;background:var(--paper)}
-body{font-family:var(--font-sans);background:var(--paper);color:var(--ink);overflow-x:hidden;font-weight:300;-webkit-font-smoothing:antialiased}
-
-/* ── Shared editorial primitives ─────────────────────────── */
-.label{font-family:var(--font-sans);font-size:.62rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--taupe)}
-.idx{font-family:var(--font-display);font-style:italic;font-size:.8rem;color:var(--accent);letter-spacing:.02em}
-.rule{height:1px;background:var(--line);width:100%}
-.display{font-family:var(--font-display);font-weight:500;line-height:1.02;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
-.display em{font-style:italic;font-weight:400}
-.serif-i{font-family:var(--font-display);font-style:italic;font-weight:400}
-
-/* ── NAV ─────────────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:26px 48px;
-  background:transparent;
-  transition:padding .4s ease, background .4s ease, border-color .4s ease;
-  border-bottom:1px solid transparent;
+body{
+  font-family:var(--font-sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
-nav.scrolled{padding:16px 48px;background:var(--paper);border-bottom-color:var(--line)}
-.nav-logo{font-family:var(--font-display);font-weight:500;font-size:1.25rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none;line-height:1}
-.nav-logo em{font-style:italic;font-weight:400;color:var(--accent)}
-.nav-links{display:flex;gap:34px;list-style:none}
-.nav-links a{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;position:relative;padding-bottom:3px;transition:color .25s}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .3s ease}
-.nav-links a:hover{color:var(--accent)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+em{font-style:italic}
+
+/* subtle paper grain */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4;
+  background-image:radial-gradient(rgba(120,100,80,.04) 1px,transparent 1px);
+  background-size:3px 3px;
+}
+
+/* ── shared ─────────────────────────────────────────── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 26px}
+.label{
+  font-family:var(--font-sans);font-size:.66rem;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--taupe);
+}
+.serif-i{font-family:var(--font-display);font-style:italic}
+.reveal,.reveal-l,.reveal-r{opacity:0;transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal{transform:translateY(26px)}
+.reveal-l{transform:translateX(-30px)}
+.reveal-r{transform:translateX(30px)}
+.reveal.on,.reveal-l.on,.reveal-r.on{opacity:1;transform:none}
+
+/* pill */
+.pill{
+  display:inline-flex;align-items:center;gap:.55em;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.5em 1.2em;background:var(--paper);
+  font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);
+}
+.pill.serifpill{font-family:var(--font-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:1.15rem;color:var(--ink);padding:.35em 1.4em;background:var(--cream)}
+
+/* buttons */
+.btn-book{
+  display:inline-flex;align-items:center;gap:.7em;
+  background:var(--espresso);color:var(--cream);
+  border-radius:999px;padding:.7em .8em .7em 1.4em;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  transition:background .35s,transform .35s;
+}
+.btn-book .arrow{
+  width:30px;height:30px;border-radius:999px;background:var(--cream);color:var(--espresso);
+  display:grid;place-items:center;transition:transform .35s;
+}
+.btn-book:hover{background:var(--brown)}
+.btn-book:hover .arrow{transform:rotate(45deg)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  padding:.9em 0;border-bottom:1px solid var(--ink);color:var(--ink);
+  transition:color .3s,border-color .3s;
+}
+.btn-ghost:hover{color:var(--brown);border-color:var(--brown)}
+.btn-cream{
+  display:inline-flex;align-items:center;gap:.7em;
+  background:var(--cream);color:var(--espresso);
+  border-radius:999px;padding:.7em .8em .7em 1.4em;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  transition:background .35s;
+}
+.btn-cream .arrow{width:30px;height:30px;border-radius:999px;background:var(--espresso);color:var(--cream);display:grid;place-items:center;transition:transform .35s}
+.btn-cream:hover .arrow{transform:rotate(45deg)}
+
+/* ── dark rounded band + corner labels ──────────────── */
+.band{position:relative;background:var(--espresso);color:var(--cream);border-radius:var(--r);overflow:hidden}
+.cl{position:absolute;z-index:3;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-dim)}
+.cl-tl{top:22px;left:26px}.cl-tr{top:22px;right:26px}
+.cl-bl{bottom:22px;left:26px}.cl-br{bottom:22px;right:26px}
+
+/* ═══════════════════ NAV ═══════════════════ */
+#main-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 32px;transition:padding .4s,background .4s,box-shadow .4s;
+}
+#main-nav.scrolled{padding:12px 32px;background:rgba(239,234,225,.9);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav-brand{font-family:var(--font-display);font-size:1.35rem;font-weight:600;letter-spacing:.01em}
+.nav-brand em{color:var(--brown)}
+.nav-links{display:flex;gap:34px}
+.nav-links a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--ink);position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--brown);transition:width .35s}
 .nav-links a:hover::after{width:100%}
-.nav-cta{font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:12px 26px;background:var(--ink);color:var(--paper);text-decoration:none;transition:background .3s}
-.nav-cta:hover{background:var(--accent)}
-.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
-.nav-burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
+.nav-right{display:flex;align-items:center;gap:22px}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{width:24px;height:1.5px;background:var(--ink);display:block}
 
-/* Mobile full-screen menu */
-.mobile-menu{position:fixed;inset:0;z-index:300;background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:48px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);visibility:hidden}
-.mobile-menu.open{transform:translateY(0);visibility:visible}
-.mobile-menu a{font-family:var(--font-display);font-weight:500;font-size:2.4rem;color:var(--ink);text-decoration:none;padding:10px 0;line-height:1.2}
-.mobile-menu a em{font-style:italic;color:var(--accent)}
-.mm-close{position:absolute;top:26px;right:44px;background:none;border:none;font-family:var(--font-display);font-size:2rem;color:var(--ink);cursor:pointer;line-height:1}
-.mm-foot{margin-top:40px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe)}
+/* ═══════════════════ HERO ═══════════════════ */
+#hero{padding:96px 26px 0;max-width:1200px;margin:0 auto}
+.hero-band{min-height:82vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 30px}
+.hero-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.62) saturate(.9)}
+.hero-band::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,15,12,.35),rgba(20,15,12,.55))}
+.hero-inner{position:relative;z-index:2;max-width:820px}
+.hero-eyebrow{color:var(--cream-dim);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:26px}
+.hero-h1{font-family:var(--font-display);font-weight:500;color:var(--cream);font-size:clamp(2.9rem,7vw,5.8rem);line-height:1.02;letter-spacing:-.01em}
+.hero-h1 em{color:#e9d8c4}
+.hero-sub{color:rgba(244,240,232,.82);max-width:520px;margin:26px auto 40px;font-size:1rem;font-weight:300}
+.hero-actions{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;align-items:center}
+.hero-actions .btn-ghost{color:var(--cream);border-color:rgba(244,240,232,.5)}
+.hero-actions .btn-ghost:hover{color:#e9d8c4;border-color:#e9d8c4}
 
-/* ── HERO ────────────────────────────────────────────────── */
-#hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;padding-top:88px}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 64px 80px 48px;position:relative}
-.hero-index{display:flex;align-items:center;gap:14px;margin-bottom:40px}
-.hero-h1{font-family:var(--font-display);font-weight:500;font-size:clamp(3.2rem,6.4vw,7rem);line-height:.96;letter-spacing:-.02em;color:var(--ink);margin-bottom:0;text-wrap:balance}
-.hero-h1 em{font-style:italic;font-weight:400;color:var(--accent)}
-.hero-sub{font-size:.95rem;line-height:1.75;color:var(--ink-soft);max-width:400px;margin:34px 0 44px}
-.hero-actions{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
-.btn-solid{padding:16px 34px;background:var(--ink);color:var(--paper);font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background .3s;display:inline-block}
-.btn-solid:hover{background:var(--accent)}
-.btn-underline{font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding-bottom:4px}
-.btn-underline::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transition:transform .35s ease;transform-origin:right;}
-.btn-underline:hover{color:var(--accent)}
-.btn-underline:hover::after{transform:scaleX(0);}
-.hero-right{position:relative;overflow:hidden;background:var(--sand)}
-.hero-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
-.hero-caption{position:absolute;left:0;bottom:0;background:var(--paper);padding:18px 24px;max-width:280px;border-top:1px solid var(--line);border-right:1px solid var(--line)}
-.hero-caption .serif-i{display:block;font-size:1.35rem;color:var(--ink);line-height:1.15}
-.hero-caption .label{margin-top:8px;display:block;color:var(--taupe)}
-.hero-vert{position:absolute;right:26px;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:right center;font-size:.6rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--paper);mix-blend-mode:difference;white-space:nowrap}
+/* ═══════════════════ TICKER ═══════════════════ */
+.ticker{background:var(--espresso);color:var(--cream);overflow:hidden;white-space:nowrap;padding:16px 0;margin-top:26px;position:relative;z-index:2}
+.ticker-inner{display:inline-flex;animation:scroll 34s linear infinite}
+.ticker-item{font-family:var(--font-display);font-style:italic;font-size:1.5rem;padding:0 30px;display:inline-flex;align-items:center;gap:30px;color:#e9d8c4}
+.ticker-sep{width:6px;height:6px;border-radius:999px;background:var(--brown-lt);display:inline-block}
+@keyframes scroll{to{transform:translateX(-50%)}}
 
-/* ── TICKER ───────────────────────────────────────────────── */
-.ticker{background:var(--ink);padding:20px 0;overflow:hidden;white-space:nowrap;border-top:1px solid var(--ink)}
-.ticker-inner{display:inline-flex;animation:tick 42s linear infinite;will-change:transform}
-.ticker-item{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:1.5rem;color:var(--paper);padding:0 34px;display:inline-flex;align-items:center;gap:34px}
-.ticker-sep{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ═══════════════════ INTRO / MASTHEAD ═══════════════════ */
+.masthead{text-align:center;padding:120px 26px 30px;max-width:900px;margin:0 auto}
+.mast-h{font-family:var(--font-display);font-weight:800;line-height:.98;letter-spacing:-.01em;font-size:clamp(3rem,9vw,7rem)}
+.mast-h .thin{font-weight:400;font-style:italic;font-size:.5em;vertical-align:middle;margin-right:.15em;color:var(--brown)}
+.mast-p{max-width:560px;margin:30px auto 0;color:var(--taupe);font-size:.95rem}
 
-/* ── SECTION SHELL ────────────────────────────────────────── */
-.section{padding:120px 48px}
-.sec-head{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;margin-bottom:72px}
-.sec-head-index{padding-top:8px}
-.sec-h2{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,4.4vw,4rem);line-height:1.02;letter-spacing:-.02em;color:var(--ink);max-width:16ch;text-wrap:balance}
-.sec-h2 em{font-style:italic;font-weight:400;color:var(--accent)}
-.sec-lead{font-size:.95rem;line-height:1.75;color:var(--ink-soft);max-width:440px;margin-top:22px}
+/* section heading (paper) */
+.sec{padding:96px 0}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 60px}
+.sec-head .pill{margin-bottom:26px}
+.sec-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.04;letter-spacing:-.01em}
+.sec-h2 em{color:var(--brown)}
+.sec-lead{margin-top:18px;color:var(--taupe);font-size:.95rem}
 
-/* ── SERVICES ─────────────────────────────────────────────── */
-.svc-list{border-top:1px solid var(--line)}
-.svc-row{display:grid;grid-template-columns:64px 1.4fr 2fr auto;gap:32px;align-items:baseline;padding:36px 8px;border-bottom:1px solid var(--line);transition:background .35s ease,padding .35s ease;cursor:default}
-.svc-row:hover{background:var(--sand);padding-left:24px}
-.svc-row .idx{font-size:.9rem}
-.svc-name{font-family:var(--font-display);font-weight:500;font-size:1.7rem;letter-spacing:-.01em;color:var(--ink)}
-.svc-desc{font-size:.86rem;line-height:1.7;color:var(--taupe)}
-.svc-price{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:1.6rem;color:var(--accent);white-space:nowrap;text-align:right}
-.svc-price small{display:block;font-family:var(--font-sans);font-style:normal;font-size:.58rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-lt);margin-bottom:4px}
+/* ═══════════════════ SERVICES (dark cards) ═══════════════════ */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc-card{
+  background:var(--espresso);color:var(--cream);border-radius:var(--r);
+  padding:34px 30px 30px;display:flex;flex-direction:column;min-height:280px;
+  position:relative;overflow:hidden;transition:transform .5s,background .5s;
+}
+.svc-card::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 0%,rgba(138,106,77,.28),transparent 60%);opacity:0;transition:opacity .5s}
+.svc-card:hover{transform:translateY(-6px)}
+.svc-card:hover::before{opacity:1}
+.svc-idx{font-family:var(--font-display);font-style:italic;color:var(--brown-lt);font-size:1.1rem;position:relative;z-index:1}
+.svc-name{font-family:var(--font-display);font-size:1.7rem;font-weight:500;margin-top:14px;position:relative;z-index:1}
+.svc-desc{color:rgba(244,240,232,.7);font-size:.86rem;font-weight:300;margin-top:12px;flex:1;position:relative;z-index:1}
+.svc-price{margin-top:22px;display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid rgba(244,240,232,.15);padding-top:16px;position:relative;z-index:1}
+.svc-price small{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+.svc-price b{font-family:var(--font-display);font-weight:600;font-size:1.7rem}
 
-/* ── PRICING ──────────────────────────────────────────────── */
-#pricing{background:var(--sand)}
-#pricing .sec-h2 em{color:var(--accent)}
-.pricing-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 72px;max-width:1120px}
-.pcol-title{font-size:.62rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--sand-2);display:flex;justify-content:space-between;align-items:baseline}
-.pcol-title span{color:var(--taupe);letter-spacing:.14em}
-.price-row{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--sand-2)}
-.pr-name{font-family:var(--font-display);font-weight:500;font-size:1.1rem;color:var(--ink)}
-.pr-sub{font-size:.72rem;color:var(--taupe);margin-top:4px;letter-spacing:.02em}
-.pr-amt{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:1.25rem;color:var(--accent);white-space:nowrap;margin-left:20px;text-align:right}
-.pr-amt .fill{font-family:var(--font-sans);font-style:normal;font-size:.66rem;font-weight:400;color:var(--taupe);display:block;margin-top:3px;letter-spacing:.04em}
-.pricing-sub{margin-top:40px}
-.pricing-notes{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1120px}
-.pnote{background:var(--paper);padding:28px 30px;border-top:2px solid var(--ink);font-size:.84rem;line-height:1.7;color:var(--ink-soft)}
-.pnote.accent{border-top-color:var(--accent)}
-.pnote strong{font-weight:500;color:var(--ink);display:block;margin-bottom:8px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+/* divider pill */
+.divider{display:flex;justify-content:center;padding:20px 0 0}
 
-/* ── GALLERY ──────────────────────────────────────────────── */
-#gallery{padding-bottom:120px}
-.gal-feature{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
-.gal-feature .gi{aspect-ratio:16/11}
-.gal-feature .gi.tall{aspect-ratio:auto}
+/* ═══════════════════ GALLERY (dark band) ═══════════════════ */
+.gal-band{padding:74px 30px 66px}
+.gal-band .sec-head{color:var(--cream)}
+.gal-band .sec-head .pill{background:transparent;border-color:rgba(244,240,232,.25);color:var(--cream-dim)}
+.gal-band .sec-h2{color:var(--cream)}.gal-band .sec-h2 em{color:#e9d8c4}
+.gal-band .sec-lead{color:rgba(244,240,232,.65)}
+.gal-feature{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px}
 .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.gal-grid .gi{aspect-ratio:4/5}
-.gal-grid .gi.wide{grid-column:span 2;aspect-ratio:auto}
-.gi{position:relative;overflow:hidden;background:var(--sand)}
-.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,0,.1,1);cursor:zoom-in}
-.gi:hover img{transform:scale(1.05)}
-.gi-hover{position:absolute;left:14px;bottom:14px;font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--paper);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.gi{position:relative;overflow:hidden;border-radius:var(--r);background:var(--espresso-2);cursor:zoom-in;aspect-ratio:1}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:saturate(.92)}
+.gal-feature .gi{aspect-ratio:auto;min-height:440px}
+.gi.tall{aspect-ratio:auto}
+.gi.wide{grid-column:span 2;aspect-ratio:2}
+.gi:hover img{transform:scale(1.06)}
+.gi-hover{position:absolute;left:16px;bottom:14px;color:var(--cream);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:.4s;z-index:2}
+.gi::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,12,.6));opacity:0;transition:.4s}
 .gi:hover .gi-hover{opacity:1;transform:none}
+.gi:hover::after{opacity:1}
 
-/* ── ABOUT ────────────────────────────────────────────────── */
-#about{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
-.about-media{position:relative;overflow:hidden;min-height:640px}
-.about-media img{width:100%;height:100%;object-fit:cover;object-position:center}
-.about-media .badge{position:absolute;left:0;bottom:0;background:var(--accent);color:var(--paper);padding:14px 22px;font-size:.6rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
-.about-body-wrap{padding:110px 72px;display:flex;flex-direction:column;justify-content:center}
-.about-body-wrap .label{color:var(--taupe-lt)}
-.about-h2{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.6vw,3.4rem);line-height:1.04;letter-spacing:-.02em;color:var(--paper);margin:18px 0 28px}
-.about-h2 em{font-style:italic;font-weight:400;color:var(--accent)}
-.about-p{font-size:.92rem;line-height:1.85;color:rgba(245,241,234,.72);margin-bottom:16px;font-weight:300;max-width:46ch}
-.about-cta{margin-top:20px;align-self:flex-start;padding:15px 32px;background:var(--paper);color:var(--ink);font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background .3s,color .3s}
-.about-cta:hover{background:var(--accent);color:var(--paper)}
-.about-stats{display:flex;gap:56px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(245,241,234,.14)}
-.stat-n{font-family:var(--font-display);font-weight:500;font-size:2.8rem;line-height:1;color:var(--paper)}
-.stat-n em{font-style:italic;font-weight:400;color:var(--accent)}
-.stat-l{font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-lt);margin-top:10px}
+/* ═══════════════════ PRICING ═══════════════════ */
+.pricing-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.pcard{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:34px 32px}
+.pcol-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;padding-bottom:18px;margin-bottom:6px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between}
+.pcol-title span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);font-family:var(--font-sans);font-weight:500}
+.price-row{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+.price-row:last-child{border-bottom:none}
+.pr-name{font-size:1rem;font-weight:500}
+.pr-sub{font-size:.76rem;color:var(--taupe);margin-top:3px}
+.pr-amt{font-family:var(--font-display);font-size:1.2rem;font-weight:600;white-space:nowrap;text-align:right}
+.pr-amt .fill{display:block;font-family:var(--font-sans);font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--brown);margin-top:2px}
+.pricing-sub{margin-top:22px}
+.pricing-sub .pcol-title{font-size:1.15rem}
+.pricing-notes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.pnote{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;font-size:.85rem;color:var(--taupe)}
+.pnote strong{display:block;font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+.pnote.accent{background:var(--espresso);color:rgba(244,240,232,.75);border:none}
+.pnote.accent strong{color:var(--cream)}
 
-/* ── TESTIMONIALS ─────────────────────────────────────────── */
-#testimonials{background:var(--paper)}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.test-card{background:var(--paper);padding:48px 40px;transition:background .35s}
-.test-card:hover{background:var(--sand)}
-.test-quote{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:1.15rem;line-height:1.55;color:var(--ink);margin-bottom:30px;text-wrap:pretty}
-.test-quote::before{content:'\201C';font-family:var(--font-display);font-size:3rem;color:var(--accent);display:block;line-height:.4;margin-bottom:18px}
-.test-name{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe)}
-.test-name span{color:var(--accent)}
+/* ═══════════════════ ABOUT ═══════════════════ */
+#about{padding:96px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.about-media{position:relative;border-radius:var(--r);overflow:hidden}
+.about-media img{width:100%;height:100%;object-fit:cover;min-height:520px;filter:saturate(.92)}
+.about-badge{position:absolute;left:20px;bottom:20px;background:var(--cream);color:var(--espresso);border-radius:999px;padding:.6em 1.3em;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.about-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.02;margin:14px 0 22px}
+.about-h2 em{color:var(--brown)}
+.about-p{color:var(--taupe);margin-bottom:16px;font-size:.95rem}
+.about-cta{margin-top:14px}
+.about-stats{display:flex;gap:44px;margin-top:38px;padding-top:30px;border-top:1px solid var(--line)}
+.stat-n{font-family:var(--font-display);font-size:2.6rem;font-weight:600;line-height:1}
+.stat-n em{color:var(--brown);font-style:normal}
+.stat-l{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);margin-top:8px}
 
-/* ── CONTACT ──────────────────────────────────────────────── */
-#contact{display:grid;grid-template-columns:1fr 1fr}
-.contact-left{background:var(--ink);color:var(--paper);padding:110px 64px 110px 48px}
-.contact-left .label{color:var(--taupe-lt)}
-.contact-h2{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.6vw,3.4rem);line-height:1.04;letter-spacing:-.02em;color:var(--paper);margin:18px 0 22px}
-.contact-h2 em{font-style:italic;font-weight:400;color:var(--accent)}
-.contact-lead{font-size:.92rem;line-height:1.8;color:rgba(245,241,234,.7);margin-bottom:52px;max-width:42ch}
-.cinfo{display:flex;gap:18px;align-items:flex-start;margin-bottom:30px}
-.cinfo-icon{width:40px;height:40px;flex-shrink:0;border:1px solid rgba(245,241,234,.16);display:flex;align-items:center;justify-content:center}
-.cinfo-label{font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-lt);margin-bottom:6px}
-.cinfo-val{font-size:.9rem;color:rgba(245,241,234,.82);line-height:1.6;font-weight:300}
-.contact-right{background:var(--sand);padding:110px 48px 110px 64px}
-.contact-right .label{color:var(--taupe)}
-.form-title{font-family:var(--font-display);font-weight:500;font-size:1.9rem;color:var(--ink);margin:16px 0 34px}
-.form-title em{font-style:italic;font-weight:400;color:var(--accent)}
-.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+/* ═══════════════════ TESTIMONIALS ═══════════════════ */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.test-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:34px 30px;display:flex;flex-direction:column}
+.test-mark{font-family:var(--font-display);font-size:3rem;line-height:.6;color:var(--brown-lt);height:26px}
+.test-quote{font-family:var(--font-display);font-size:1.12rem;font-weight:400;line-height:1.5;margin:18px 0 auto;color:var(--ink-soft,#3a332e)}
+.test-name{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);margin-top:24px;font-weight:500}
+.test-name span{color:var(--brown)}
+
+/* ═══════════════════ CONTACT (dark band) ═══════════════════ */
+#contact{padding:0 26px 40px;max-width:1200px;margin:0 auto}
+.contact-band{padding:70px 30px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px}
+.contact-band .label{color:var(--cream-dim)}
+.contact-h2{font-family:var(--font-display);font-weight:700;color:var(--cream);font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.04;margin:14px 0 18px}
+.contact-h2 em{color:#e9d8c4}
+.contact-lead{color:rgba(244,240,232,.7);font-size:.95rem;margin-bottom:36px;max-width:400px;font-weight:300}
+.cinfo{display:flex;gap:16px;margin-bottom:24px}
+.cinfo-icon{width:40px;height:40px;flex:none;border-radius:999px;border:1px solid rgba(244,240,232,.25);display:grid;place-items:center}
+.cinfo-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:4px}
+.cinfo-val{color:var(--cream);font-size:.9rem;font-weight:300;line-height:1.5}
+.form-card{background:var(--espresso-2);border-radius:var(--r);padding:34px 32px}
+.form-title{font-family:var(--font-display);font-weight:600;color:var(--cream);font-size:1.6rem;margin:6px 0 22px}
+.form-title em{color:#e9d8c4}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-field{margin-bottom:14px}
-.form-field input,.form-field select,.form-field textarea{width:100%;padding:15px 16px;background:var(--paper);border:1px solid var(--line);font-family:var(--font-sans);font-size:.88rem;font-weight:300;color:var(--ink);outline:none;transition:border-color .25s;-webkit-appearance:none;border-radius:0}
-.form-field input::placeholder,.form-field textarea::placeholder{color:var(--taupe-lt)}
-.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--accent)}
-.form-field textarea{height:120px;resize:none}
-.form-field select{color:var(--taupe);cursor:pointer}
-.form-btn{width:100%;padding:17px;background:var(--ink);color:var(--paper);font-family:var(--font-sans);font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s}
-.form-btn:hover{background:var(--accent)}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;background:rgba(244,240,232,.05);border:1px solid rgba(244,240,232,.18);
+  border-radius:var(--r);padding:14px 16px;color:var(--cream);font-family:var(--font-sans);
+  font-size:.88rem;transition:border-color .3s;
+}
+.form-field textarea{min-height:110px;resize:vertical}
+.form-field input::placeholder,.form-field textarea::placeholder{color:rgba(244,240,232,.4)}
+.form-field select{color:rgba(244,240,232,.7)}
+.form-field select option,.form-field optgroup{background:var(--espresso)}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--brown-lt)}
+.form-btn{width:100%;background:var(--cream);color:var(--espresso);border:none;border-radius:999px;padding:16px;font-family:var(--font-sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .3s,color .3s}
+.form-btn:hover{background:var(--brown);color:var(--cream)}
 
-/* ── INSTAGRAM ────────────────────────────────────────────── */
-#instagram{background:var(--paper);text-align:center;padding:120px 48px}
-.ig-head{max-width:620px;margin:0 auto 48px}
-.ig-h2{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.02;letter-spacing:-.02em;color:var(--ink);margin:14px 0 18px}
-.ig-h2 em{font-style:italic;font-weight:400;color:var(--accent)}
-.ig-lead{font-size:.92rem;line-height:1.7;color:var(--ink-soft);margin-bottom:26px}
-.ig-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;transition:background .3s}
-.ig-btn:hover{background:var(--accent)}
-.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
-.ig-grid .gi{aspect-ratio:1/1}
+/* ═══════════════════ IG / WORDMARK ═══════════════════ */
+.ig-sec{padding:96px 0 40px}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:48px}
+.ig-grid .gi img{aspect-ratio:1}
+.wordmark{text-align:center;position:relative;padding:70px 26px 30px;max-width:1200px;margin:0 auto}
+.wordmark-band{position:relative;background:var(--paper-2);border-radius:var(--r);padding:60px 30px 40px;border:1px solid var(--line)}
+.wm-big{font-family:var(--font-display);font-weight:800;font-size:clamp(4rem,20vw,15rem);line-height:.86;letter-spacing:-.02em;color:var(--ink)}
+.wm-big em{color:var(--brown)}
+.wm-sub{margin-top:12px;color:var(--taupe);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+.wm-cl{position:absolute;top:24px;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe)}
+.wm-cl.l{left:30px}.wm-cl.r{right:30px}
 
-/* ── FOOTER ───────────────────────────────────────────────── */
-footer{background:var(--ink);color:var(--paper);padding:72px 48px 40px}
-.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:52px;border-bottom:1px solid rgba(245,241,234,.1)}
-.footer-brand{font-family:var(--font-display);font-weight:500;font-size:1.6rem;color:var(--paper);letter-spacing:-.01em}
-.footer-brand em{font-style:italic;font-weight:400;color:var(--accent)}
-.footer-tag{font-size:.82rem;color:rgba(245,241,234,.4);margin-top:10px;font-weight:300}
-.footer-social{display:flex;gap:12px;margin-top:26px}
-.soc-btn{width:38px;height:38px;border:1px solid rgba(245,241,234,.14);display:flex;align-items:center;justify-content:center;color:rgba(245,241,234,.7);text-decoration:none;transition:.25s}
-.soc-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper)}
-.footer-col-title{font-size:.6rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe-lt);margin-bottom:20px}
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{background:var(--espresso);color:var(--cream);padding:70px 0 30px;margin-top:40px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(244,240,232,.12)}
+.footer-brand{font-family:var(--font-display);font-size:1.5rem;font-weight:600}
+.footer-brand em{color:#e9d8c4}
+.footer-tag{color:var(--cream-dim);font-size:.82rem;margin-top:10px;font-weight:300}
+.footer-social{display:flex;gap:10px;margin-top:20px}
+.soc-btn{width:38px;height:38px;border-radius:999px;border:1px solid rgba(244,240,232,.2);display:grid;place-items:center;color:var(--cream);transition:background .3s,color .3s}
+.soc-btn:hover{background:var(--cream);color:var(--espresso)}
+.footer-col-title{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:18px}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:12px}
-.footer-links a{font-size:.84rem;color:rgba(245,241,234,.5);text-decoration:none;transition:color .2s;font-weight:300}
-.footer-links a:hover{color:var(--accent)}
-.footer-book{margin-top:22px;display:inline-block;padding:11px 22px;background:var(--paper);color:var(--ink);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background .3s,color .3s}
-.footer-book:hover{background:var(--accent);color:var(--paper)}
-.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.footer-copy{font-size:.72rem;color:rgba(245,241,234,.28);font-weight:300;letter-spacing:.02em}
+.footer-links li{margin-bottom:11px}
+.footer-links a{font-size:.86rem;color:rgba(244,240,232,.75);font-weight:300;transition:color .3s}
+.footer-links a:hover{color:#e9d8c4}
+.footer-book{display:inline-flex;margin-top:16px;background:var(--cream);color:var(--espresso);border-radius:999px;padding:.7em 1.4em;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;transition:background .3s}
+.footer-book:hover{background:var(--brown);color:var(--cream)}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px}
+.footer-copy{color:var(--cream-dim);font-size:.72rem;letter-spacing:.06em}
 
-/* ── REVEAL ANIMATIONS ────────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1)}
-.reveal.on{opacity:1;transform:none}
-.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1)}
-.reveal-l.on{opacity:1;transform:none}
-.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1)}
-.reveal-r.on{opacity:1;transform:none}
+/* back to top */
+#back-top{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:999px;background:var(--espresso);color:var(--cream);border:none;cursor:pointer;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .4s,background .3s}
+#back-top:hover{background:var(--brown)}
 
-/* ── BACK TO TOP ──────────────────────────────────────────── */
-#back-top{position:fixed;bottom:28px;right:28px;z-index:250;width:46px;height:46px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,background .25s;font-size:16px}
-#back-top:hover{background:var(--accent)}
+/* mobile menu */
+#mobile-menu{position:fixed;inset:0;z-index:200;background:var(--espresso);color:var(--cream);display:flex;flex-direction:column;padding:30px 32px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+#mobile-menu.open{transform:none}
+.mm-top{display:flex;justify-content:space-between;align-items:center}
+.mm-brand{font-family:var(--font-display);font-size:1.4rem;font-weight:600}
+.mm-close{background:none;border:none;color:var(--cream);font-size:1.8rem;cursor:pointer;line-height:1}
+.mm-links{display:flex;flex-direction:column;gap:6px;margin:auto 0}
+.mm-links a{font-family:var(--font-display);font-size:2.4rem;font-weight:500;padding:8px 0}
+.mm-links a em{color:#e9d8c4}
+.mm-foot{display:flex;gap:20px;color:var(--cream-dim);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
 
-/* ── MOBILE ───────────────────────────────────────────────── */
-@media(max-width:960px){
-  nav{padding:18px 22px}
-  nav.scrolled{padding:14px 22px}
-  .nav-links,.nav-cta{display:none}
-  .nav-burger{display:flex}
-  #hero{grid-template-columns:1fr;padding-top:78px}
-  .hero-left{padding:56px 22px 44px;order:2}
-  .hero-right{min-height:78vw;order:1}
-  .hero-vert{display:none}
-  .hero-sub{margin:26px 0 34px}
-  .section{padding:72px 22px}
-  .sec-head{grid-template-columns:1fr;gap:12px;margin-bottom:44px}
-  .sec-lead{margin-top:14px}
-  .svc-row{grid-template-columns:36px 1fr;grid-template-areas:"idx name" ". desc" ". price";gap:6px 16px;padding:26px 4px}
-  .svc-row:hover{padding-left:4px}
-  .svc-row .idx{grid-area:idx}
-  .svc-name{grid-area:name;font-size:1.4rem}
-  .svc-desc{grid-area:desc;margin-top:8px}
-  .svc-price{grid-area:price;text-align:left;margin-top:12px;font-size:1.4rem}
-  .svc-price small{margin-bottom:2px}
-  .pricing-cols{grid-template-columns:1fr;gap:48px}
-  .pricing-notes{grid-template-columns:1fr}
-  .gal-feature{grid-template-columns:1fr}
-  .gal-feature .gi{aspect-ratio:4/3}
-  .gal-grid{grid-template-columns:1fr 1fr}
-  .gal-grid .gi.wide{grid-column:span 2}
-  #about{grid-template-columns:1fr}
-  .about-media{min-height:80vw}
-  .about-body-wrap{padding:64px 22px}
-  .about-stats{gap:28px;flex-wrap:wrap}
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-right .btn-book{display:none}
+  .burger{display:flex}
+  .svc-grid,.test-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:repeat(3,1fr)}
+  .ig-grid{grid-template-columns:repeat(3,1fr)}
+  .about-grid,.contact-grid,.pricing-cols,.pricing-notes{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .about-media img{min-height:380px}
+}
+@media(max-width:600px){
+  .wrap{padding:0 18px}
+  #hero{padding:80px 16px 0}
+  .hero-band{padding:90px 22px;min-height:74vh}
+  .svc-grid,.test-grid,.gal-grid,.ig-grid,.gal-feature{grid-template-columns:1fr 1fr}
+  .gi.wide{grid-column:span 2}
   .test-grid{grid-template-columns:1fr}
-  #contact{grid-template-columns:1fr}
-  .contact-left{padding:64px 22px}
-  .contact-right{padding:64px 22px}
-  .ig-grid{grid-template-columns:1fr 1fr}
-  .footer-top{grid-template-columns:1fr 1fr;gap:36px}
-  footer{padding:56px 22px 32px}
+  .footer-top{grid-template-columns:1fr}
+  .about-stats{gap:26px}
   .form-2col{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+  .masthead{padding:80px 16px 20px}
+  .sec{padding:64px 0}
+  .cl-tr,.cl-br{display:none}
 }
 @media(prefers-reduced-motion:reduce){
-  .ticker-inner{animation:none}
-  .reveal,.reveal-l,.reveal-r{transition:none;opacity:1;transform:none}
-  html{scroll-behavior:auto}
+  *{animation:none!important}
+  .reveal,.reveal-l,.reveal-r{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -302,53 +365,42 @@ footer{background:var(--ink);color:var(--paper);padding:72px 48px 40px}
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a class="nav-logo" href="#hero">Lash Studio <em>by Katie</em></a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a class="nav-cta" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener">Book Now</a>
-  <button class="nav-burger" id="burger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="#" class="nav-brand">Lash Studio <em>by Katie</em></a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener" class="btn-book">
+      Book Now
+      <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <button class="mm-close" id="mm-close" aria-label="Close menu">&times;</button>
-  <a href="#services">Services</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-  <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener"><em>Book Now</em></a>
-  <div class="mm-foot">Lynnwood, WA · @lashstudiobykatie</div>
-</div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-left reveal-l">
-    <div class="hero-index">
-      <span class="idx">I</span>
-      <span class="rule" style="width:40px"></span>
-      <span class="label">Certified Lash Artist · Lynnwood, WA</span>
-    </div>
-    <h1 class="hero-h1">Lashes made<br><em>only</em> for you.</h1>
-    <p class="hero-sub">Handcrafted extensions tailored to your eye shape and lifestyle — precise, weightless, and effortlessly you. No cookie-cutter sets, only what suits you.</p>
-    <div class="hero-actions">
-      <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener" class="btn-solid">Book Your Appointment</a>
-      <a href="#services" class="btn-underline">View Services</a>
-    </div>
-  </div>
-  <div class="hero-right reveal-r">
-    <img src="hero.jpg" alt="Close-up of freshly applied lash extensions by Katie"/>
-    <span class="hero-vert">Lash Studio · Est. Lynnwood</span>
-    <div class="hero-caption">
-      <span class="serif-i">lashes that last</span>
-      <span class="label">@lashstudiobykatie</span>
+  <div class="band hero-band">
+    <img src="assets/gallery/IMG_2054.jpeg" alt="Close-up of freshly applied lash extensions by Katie"/>
+    <span class="cl cl-tl">Lash Studio by Katie</span>
+    <span class="cl cl-tr">Est · Lynnwood, WA</span>
+    <span class="cl cl-bl">Classic · Hybrid · Lifts</span>
+    <span class="cl cl-br">@lashstudiobykatie</span>
+    <div class="hero-inner reveal">
+      <p class="hero-eyebrow">Certified Lash Artist</p>
+      <h1 class="hero-h1">Lashes made<br><em>only</em> for you.</h1>
+      <p class="hero-sub">Handcrafted extensions tailored to your eye shape and lifestyle — precise, weightless, and effortlessly you.</p>
+      <div class="hero-actions">
+        <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener" class="btn-cream">
+          Book Appointment
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
     </div>
   </div>
 </section>
@@ -356,413 +408,383 @@ footer{background:var(--ink);color:var(--paper);padding:72px 48px 40px}
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
-    <span class="ticker-item">Classic <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Hybrid <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Korean Lash Lift <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Refills <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Synthetic Mink <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Custom Sets <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Classic <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Hybrid <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Korean Lash Lift <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Refills <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Synthetic Mink <span class="ticker-sep"></span></span>
-    <span class="ticker-item">Custom Sets <span class="ticker-sep"></span></span>
+    <span class="ticker-item">Classic <span class="ticker-sep"></span> Hybrid <span class="ticker-sep"></span> Korean Lash Lift <span class="ticker-sep"></span> Refills <span class="ticker-sep"></span> Synthetic Mink <span class="ticker-sep"></span> Custom Sets <span class="ticker-sep"></span></span>
+    <span class="ticker-item">Classic <span class="ticker-sep"></span> Hybrid <span class="ticker-sep"></span> Korean Lash Lift <span class="ticker-sep"></span> Refills <span class="ticker-sep"></span> Synthetic Mink <span class="ticker-sep"></span> Custom Sets <span class="ticker-sep"></span></span>
   </div>
 </div>
 
-<!-- SERVICES -->
-<section id="services" class="section">
-  <div class="sec-head reveal">
-    <div class="sec-head-index"><span class="idx">II</span></div>
-    <div>
-      <p class="label">What We Offer</p>
-      <h2 class="sec-h2">The <em>Services</em></h2>
-      <p class="sec-lead">Every set is designed around your natural eye shape, lash health, and lifestyle — no cookie-cutter lashes, only what's made for you.</p>
-    </div>
-  </div>
-
-  <div class="svc-list">
-    <div class="svc-row reveal">
-      <span class="idx">01</span>
-      <span class="svc-name">Classic Lashes</span>
-      <span class="svc-desc">One extension per natural lash for a clean, fluttery look. Available in Half, Natural, Glam, or Drama.</span>
-      <span class="svc-price"><small>From</small>$120</span>
-    </div>
-    <div class="svc-row reveal">
-      <span class="idx">02</span>
-      <span class="svc-name">Hybrid Lashes</span>
-      <span class="svc-desc">A blend of classic &amp; volume fans for beautiful texture. Available in Natural, Fullness, or Drama for a customized look.</span>
-      <span class="svc-price"><small>From</small>$140</span>
-    </div>
-    <div class="svc-row reveal">
-      <span class="idx">03</span>
-      <span class="svc-name">Korean Lash Lift</span>
-      <span class="svc-desc">A semi-permanent lift that curls your natural lashes from the root — mascara-free beauty that lasts weeks. Tint add-on available.</span>
-      <span class="svc-price"><small>From</small>$80</span>
-    </div>
-    <div class="svc-row reveal">
-      <span class="idx">04</span>
-      <span class="svc-name">Refill Appointments</span>
-      <span class="svc-desc">Keep your set full and fresh. Refills require a prior service with us and are available within 4 weeks of that appointment, for Classic and Hybrid sets.</span>
-      <span class="svc-price"><small>From</small>$90</span>
-    </div>
-    <div class="svc-row reveal">
-      <span class="idx">05</span>
-      <span class="svc-name">Thicker Lash Add-on</span>
-      <span class="svc-desc">Upgrade any Classic set to a thicker, more dramatic lash for extra softness, fullness, and impact. Available on request.</span>
-      <span class="svc-price"><small>Add-on</small>+$10</span>
-    </div>
-    <div class="svc-row reveal">
-      <span class="idx">06</span>
-      <span class="svc-name">Lash Removal</span>
-      <span class="svc-desc">Safe, gentle removal of existing lash extensions using professional-grade remover. Perfect for a fresh start or between sets.</span>
-      <span class="svc-price"><small>Flat rate</small>$30</span>
-    </div>
-  </div>
+<!-- MASTHEAD -->
+<section class="masthead reveal">
+  <h2 class="mast-h"><span class="thin">The</span>ARTISTRY</h2>
+  <p class="mast-p">A calm, welcoming studio in Lynnwood, WA — where every set is shaped around your natural eye shape, lash health, and lifestyle. No cookie-cutter lashes, only what suits you.</p>
 </section>
 
-<!-- PRICE LIST -->
-<section id="pricing" class="section">
-  <div class="sec-head reveal">
-    <div class="sec-head-index"><span class="idx">III</span></div>
-    <div>
-      <p class="label">Transparent Pricing</p>
-      <h2 class="sec-h2">The Price <em>List</em></h2>
-      <p class="sec-lead">Full set and refill pricing for both Classic and Hybrid styles. Thick synthetic mink is available as an add-on.</p>
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">What We Offer</span>
+      <h2 class="sec-h2">The <em>Services</em></h2>
+      <p class="sec-lead">Every service is designed around you — from clean classic sets to custom hybrids and mascara-free lifts.</p>
     </div>
-  </div>
-
-  <div class="pricing-cols">
-    <!-- CLASSIC -->
-    <div class="reveal-l">
-      <div class="pcol-title">Classic Lashes <span>one by one</span></div>
-      <div class="price-row">
-        <div><div class="pr-name">Half Set</div><div class="pr-sub">55 lashes · 60 min</div></div>
-        <div class="pr-amt">$75</div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <span class="svc-idx">01</span>
+        <div class="svc-name">Classic Lashes</div>
+        <p class="svc-desc">One extension per natural lash for a clean, fluttery look. Available in Half, Natural, Glam, or Drama.</p>
+        <div class="svc-price"><small>From</small><b>$120</b></div>
       </div>
-      <div class="price-row">
-        <div><div class="pr-name">Natural</div><div class="pr-sub">90 lashes · 90 min</div></div>
-        <div class="pr-amt">$120 <span class="fill">refill · $90</span></div>
+      <div class="svc-card reveal">
+        <span class="svc-idx">02</span>
+        <div class="svc-name">Hybrid Lashes</div>
+        <p class="svc-desc">A blend of classic &amp; volume fans for beautiful texture. Available in Natural, Fullness, or Drama.</p>
+        <div class="svc-price"><small>From</small><b>$140</b></div>
       </div>
-      <div class="price-row">
-        <div><div class="pr-name">Glam</div><div class="pr-sub">130 lashes · 90 min</div></div>
-        <div class="pr-amt">$140 <span class="fill">refill · $100</span></div>
+      <div class="svc-card reveal">
+        <span class="svc-idx">03</span>
+        <div class="svc-name">Korean Lash Lift</div>
+        <p class="svc-desc">A semi-permanent lift that curls your natural lashes from the root — mascara-free beauty that lasts weeks.</p>
+        <div class="svc-price"><small>From</small><b>$80</b></div>
       </div>
-      <div class="price-row">
-        <div><div class="pr-name">Drama</div><div class="pr-sub">160 lashes · 100 min</div></div>
-        <div class="pr-amt">$160 <span class="fill">refill · $110</span></div>
+      <div class="svc-card reveal">
+        <span class="svc-idx">04</span>
+        <div class="svc-name">Refill Appointments</div>
+        <p class="svc-desc">Keep your set full and fresh. Available within 4 weeks of a prior service, for Classic and Hybrid sets.</p>
+        <div class="svc-price"><small>From</small><b>$90</b></div>
       </div>
-      <div class="pricing-sub">
-        <div class="pcol-title">Add-on</div>
-        <div class="price-row">
-          <div><div class="pr-name">Thicker Lash</div><div class="pr-sub">Fuller, bolder upgrade</div></div>
-          <div class="pr-amt">+$10</div>
-        </div>
+      <div class="svc-card reveal">
+        <span class="svc-idx">05</span>
+        <div class="svc-name">Thicker Lash Add-on</div>
+        <p class="svc-desc">Upgrade any Classic set to a thicker, more dramatic lash for extra softness, fullness, and impact.</p>
+        <div class="svc-price"><small>Add-on</small><b>+$10</b></div>
       </div>
-    </div>
-
-    <!-- HYBRID -->
-    <div class="reveal-r">
-      <div class="pcol-title">Hybrid Lashes <span>classic + volume</span></div>
-      <div class="price-row">
-        <div><div class="pr-name">Natural</div><div class="pr-sub">Soft, everyday wear · 90 min</div></div>
-        <div class="pr-amt">$140 <span class="fill">refill · $110</span></div>
+      <div class="svc-card reveal">
+        <span class="svc-idx">06</span>
+        <div class="svc-name">Lash Removal</div>
+        <p class="svc-desc">Safe, gentle removal of existing extensions using professional-grade remover. Perfect for a fresh start.</p>
+        <div class="svc-price"><small>Flat rate</small><b>$30</b></div>
       </div>
-      <div class="price-row">
-        <div><div class="pr-name">Fullness</div><div class="pr-sub">Balanced volume &amp; length · 90 min</div></div>
-        <div class="pr-amt">$160 <span class="fill">refill · $130</span></div>
-      </div>
-      <div class="price-row">
-        <div><div class="pr-name">Drama</div><div class="pr-sub">Maximum impact · 100 min</div></div>
-        <div class="pr-amt">$170 <span class="fill">refill · $150</span></div>
-      </div>
-      <div class="pricing-sub">
-        <div class="pcol-title">Lash Lift &amp; Removal</div>
-        <div class="price-row">
-          <div><div class="pr-name">Korean Lash Lift</div><div class="pr-sub">Lifts &amp; curls natural lashes</div></div>
-          <div class="pr-amt">$80</div>
-        </div>
-        <div class="price-row">
-          <div><div class="pr-name">Tint Add-on</div><div class="pr-sub">Pair with lash lift</div></div>
-          <div class="pr-amt">+$30</div>
-        </div>
-        <div class="price-row">
-          <div><div class="pr-name">Lash Removal</div><div class="pr-sub">Safe, gentle removal</div></div>
-          <div class="pr-amt">$30</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pricing-notes">
-    <div class="pnote reveal">
-      <strong>Refill Policy</strong>
-      Refills are only available within four weeks of your prior service with us.
-    </div>
-    <div class="pnote reveal">
-      <strong>Not sure which set?</strong>
-      Every appointment starts with a quick consult, so your specialist can help you choose the perfect lashes for your eye shape, lash health, and lifestyle — you leave with a set made for you.
-    </div>
-    <div class="pnote accent reveal" style="grid-column:1 / -1">
-      <strong>Booking &amp; Cancellation Policy</strong>
-      A $30 deposit is required to secure your appointment. For same-day cancellations or rescheduling, a $30 penalty fee will be charged. Please provide at least 24 hours' notice to cancel or reschedule.
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" class="section">
-  <div class="sec-head reveal">
-    <div class="sec-head-index"><span class="idx">IV</span></div>
-    <div>
-      <p class="label">Our Work</p>
-      <h2 class="sec-h2">The <em>Gallery</em></h2>
-      <p class="sec-lead">A selection of recent sets — classic, hybrid, and lifts, each shaped to the person wearing them.</p>
+<section id="gallery">
+  <div class="wrap">
+    <div class="divider reveal"><span class="pill serifpill">the gallery</span></div>
+  </div>
+  <div class="wrap" style="margin-top:26px">
+    <div class="band gal-band reveal">
+      <span class="cl cl-tl">Lash Studio by Katie</span>
+      <span class="cl cl-tr">2024 · Our Work</span>
+      <div class="sec-head">
+        <span class="pill">Recent Sets</span>
+        <h2 class="sec-h2">Lashes in <em>Focus</em></h2>
+        <p class="sec-lead">A selection of recent sets — classic, hybrid, and lifts, each shaped to the person wearing them.</p>
+      </div>
+      <div class="gal-feature">
+        <div class="gi reveal"><img src="assets/gallery/img_2058.jpeg" alt="Featured lash set close-up"/><div class="gi-hover">Featured Set</div></div>
+        <div class="gi tall reveal"><img src="assets/gallery/img_2146.jpeg" alt="Classic lashes"/><div class="gi-hover">Classic Lashes</div></div>
+      </div>
+      <div class="gal-grid">
+        <div class="gi reveal"><img src="assets/gallery/img_2147.jpeg" alt="Drama lash set"/><div class="gi-hover">Drama Set</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2150.jpeg" alt="Korean lash lift"/><div class="gi-hover">Lash Lift</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2167.jpeg" alt="Volume lash set"/><div class="gi-hover">Volume Set</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2185.jpeg" alt="Lash work detail"/><div class="gi-hover">Detail</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2186.jpeg" alt="Natural lash set"/><div class="gi-hover">Natural Set</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2187.jpeg" alt="Fullness lash set"/><div class="gi-hover">Fullness</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2196.jpeg" alt="Classic lash set"/><div class="gi-hover">Classic</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2198.jpeg" alt="Hybrid lash set"/><div class="gi-hover">Hybrid</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2210.jpeg" alt="Glam lash set"/><div class="gi-hover">Glam</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2211.jpeg" alt="Drama lash set"/><div class="gi-hover">Drama</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2218.jpeg" alt="Volume lash set"/><div class="gi-hover">Volume</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2235.jpeg" alt="Lash work detail"/><div class="gi-hover">Detail</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2238.jpeg" alt="Natural lash set"/><div class="gi-hover">Natural</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2505.jpeg" alt="Lash lift"/><div class="gi-hover">Lift</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2506.jpeg" alt="Classic lash set"/><div class="gi-hover">Classic</div></div>
+        <div class="gi reveal"><img src="assets/gallery/img_2721.jpg" alt="Hybrid lash set"/><div class="gi-hover">Hybrid</div></div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="gal-feature">
-    <div class="gi reveal"><img src="assets/gallery/IMG_2054.jpeg" alt="Featured lash set close-up"/><div class="gi-hover">Featured Set</div></div>
-    <div class="gi tall reveal"><img src="assets/gallery/img_2058.jpeg" alt="Classic lashes"/><div class="gi-hover">Classic Lashes</div></div>
-  </div>
-
-  <div class="gal-grid">
-    <div class="gi reveal"><img src="assets/gallery/img_2146.jpeg" alt="Hybrid lash set"/><div class="gi-hover">Hybrid Set</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2147.jpeg" alt="Drama lash set"/><div class="gi-hover">Drama Set</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2150.jpeg" alt="Korean lash lift"/><div class="gi-hover">Lash Lift</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2167.jpeg" alt="Volume lash set"/><div class="gi-hover">Volume Set</div></div>
-    <div class="gi wide reveal"><img src="assets/gallery/img_2185.jpeg" alt="Lash work detail"/><div class="gi-hover">Detail</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2186.jpeg" alt="Lash work"/><div class="gi-hover">Natural Set</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2187.jpeg" alt="Lash work"/><div class="gi-hover">Fullness</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2196.jpeg" alt="Lash work"/><div class="gi-hover">Classic</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2198.jpeg" alt="Lash work"/><div class="gi-hover">Hybrid</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2210.jpeg" alt="Lash work"/><div class="gi-hover">Glam</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2211.jpeg" alt="Lash work"/><div class="gi-hover">Drama</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2218.jpeg" alt="Lash work"/><div class="gi-hover">Volume</div></div>
-    <div class="gi wide reveal"><img src="assets/gallery/img_2235.jpeg" alt="Lash work detail"/><div class="gi-hover">Detail</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2238.jpeg" alt="Lash work"/><div class="gi-hover">Natural</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2505.jpeg" alt="Lash work"/><div class="gi-hover">Lift</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2506.jpeg" alt="Lash work"/><div class="gi-hover">Classic</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2721.jpg" alt="Lash work"/><div class="gi-hover">Hybrid</div></div>
-    <div class="gi reveal"><img src="assets/gallery/img_2808.jpeg" alt="Lash work"/><div class="gi-hover">Custom Set</div></div>
+<!-- PRICING -->
+<section id="pricing" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">Transparent Pricing</span>
+      <h2 class="sec-h2">The Price <em>List</em></h2>
+      <p class="sec-lead">Full set and refill pricing for both Classic and Hybrid styles. Thick synthetic mink is available as an add-on.</p>
+    </div>
+    <div class="pricing-cols">
+      <!-- CLASSIC -->
+      <div class="pcard reveal-l">
+        <div class="pcol-title">Classic Lashes <span>one by one</span></div>
+        <div class="price-row"><div><div class="pr-name">Half Set</div><div class="pr-sub">55 lashes · 60 min</div></div><div class="pr-amt">$75</div></div>
+        <div class="price-row"><div><div class="pr-name">Natural</div><div class="pr-sub">90 lashes · 90 min</div></div><div class="pr-amt">$120<span class="fill">refill · $90</span></div></div>
+        <div class="price-row"><div><div class="pr-name">Glam</div><div class="pr-sub">130 lashes · 90 min</div></div><div class="pr-amt">$140<span class="fill">refill · $100</span></div></div>
+        <div class="price-row"><div><div class="pr-name">Drama</div><div class="pr-sub">160 lashes · 100 min</div></div><div class="pr-amt">$160<span class="fill">refill · $110</span></div></div>
+        <div class="pricing-sub">
+          <div class="pcol-title">Add-on</div>
+          <div class="price-row"><div><div class="pr-name">Thicker Lash</div><div class="pr-sub">Fuller, bolder upgrade</div></div><div class="pr-amt">+$10</div></div>
+        </div>
+      </div>
+      <!-- HYBRID -->
+      <div class="pcard reveal-r">
+        <div class="pcol-title">Hybrid Lashes <span>classic + volume</span></div>
+        <div class="price-row"><div><div class="pr-name">Natural</div><div class="pr-sub">Soft, everyday wear · 90 min</div></div><div class="pr-amt">$140<span class="fill">refill · $110</span></div></div>
+        <div class="price-row"><div><div class="pr-name">Fullness</div><div class="pr-sub">Balanced volume &amp; length · 90 min</div></div><div class="pr-amt">$160<span class="fill">refill · $130</span></div></div>
+        <div class="price-row"><div><div class="pr-name">Drama</div><div class="pr-sub">Maximum impact · 100 min</div></div><div class="pr-amt">$170<span class="fill">refill · $150</span></div></div>
+        <div class="pricing-sub">
+          <div class="pcol-title">Lash Lift &amp; Removal</div>
+          <div class="price-row"><div><div class="pr-name">Korean Lash Lift</div><div class="pr-sub">Lifts &amp; curls natural lashes</div></div><div class="pr-amt">$80</div></div>
+          <div class="price-row"><div><div class="pr-name">Tint Add-on</div><div class="pr-sub">Pair with lash lift</div></div><div class="pr-amt">+$30</div></div>
+          <div class="price-row"><div><div class="pr-name">Lash Removal</div><div class="pr-sub">Safe, gentle removal</div></div><div class="pr-amt">$30</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-notes">
+      <div class="pnote reveal"><strong>Refill Policy</strong>Refills are only available within four weeks of your prior service with us.</div>
+      <div class="pnote reveal"><strong>Not sure which set?</strong>Every appointment starts with a quick consult, so your specialist can help you choose the perfect lashes for your eye shape, lash health, and lifestyle.</div>
+      <div class="pnote accent reveal" style="grid-column:1 / -1"><strong>Booking &amp; Cancellation Policy</strong>A $30 deposit is required to secure your appointment. For same-day cancellations or rescheduling, a $30 penalty fee will be charged. Please provide at least 24 hours' notice to cancel or reschedule.</div>
+    </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-media reveal-l">
-    <img src="assets/gallery/img_2506.jpeg" alt="Detail of Katie's lash work"/>
-    <div class="badge">Certified Lash Artist</div>
-  </div>
-  <div class="about-body-wrap reveal-r">
-    <p class="label">Meet Your Artist</p>
-    <h2 class="about-h2">Hi, I'm <em>Katie</em></h2>
-    <p class="about-p">I have over eight years of experience in the beauty industry — a certified lash artist based in Lynnwood, WA, passionate about helping every client feel their most beautiful and confident. Lashes should look natural, feel weightless, and last as long as possible.</p>
-    <p class="about-p">I specialize in Classic, Hybrid, and Korean lash lifts, carefully tailoring each service to your unique eye shape, lash health, and daily lifestyle. My studio is a calm, welcoming space where you can relax and trust you're in skilled hands.</p>
-    <p class="about-p">I use only premium lashes and professional-grade adhesives to ensure your comfort and the longevity of every set.</p>
-    <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener" class="about-cta">Book with Katie</a>
-    <div class="about-stats">
-      <div><div class="stat-n">150<em>+</em></div><div class="stat-l">Happy Clients</div></div>
-      <div><div class="stat-n">4.9<em style="font-family:var(--font-sans);font-style:normal">&#9733;</em></div><div class="stat-l">Avg. Rating</div></div>
-      <div><div class="stat-n">8<em>+</em></div><div class="stat-l">Years Experience</div></div>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-media reveal-l">
+        <img src="assets/gallery/img_2506.jpeg" alt="Detail of Katie's lash work"/>
+        <div class="about-badge">Certified Lash Artist</div>
+      </div>
+      <div class="about-body reveal-r">
+        <span class="pill">Meet Your Artist</span>
+        <h2 class="about-h2">Hi, I'm <em>Katie</em></h2>
+        <p class="about-p">I have over eight years of experience in the beauty industry — a certified lash artist based in Lynnwood, WA, passionate about helping every client feel their most beautiful and confident. Lashes should look natural, feel weightless, and last as long as possible.</p>
+        <p class="about-p">I specialize in Classic, Hybrid, and Korean lash lifts, carefully tailoring each service to your unique eye shape, lash health, and daily lifestyle. My studio is a calm, welcoming space where you can relax and trust you're in skilled hands.</p>
+        <p class="about-p">I use only premium lashes and professional-grade adhesives to ensure your comfort and the longevity of every set.</p>
+        <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener" class="btn-book about-cta">
+          Book with Katie
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </a>
+        <div class="about-stats">
+          <div><div class="stat-n">150<em>+</em></div><div class="stat-l">Happy Clients</div></div>
+          <div><div class="stat-n">4.9</div><div class="stat-l">Avg. Rating</div></div>
+          <div><div class="stat-n">8<em>+</em></div><div class="stat-l">Years Exp.</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials" class="section">
-  <div class="sec-head reveal">
-    <div class="sec-head-index"><span class="idx">V</span></div>
-    <div>
-      <p class="label">Client Love</p>
+<section id="testimonials" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">Client Love</span>
       <h2 class="sec-h2">What They're <em>Saying</em></h2>
       <p class="sec-lead">Real words from real clients who keep coming back.</p>
     </div>
-  </div>
-  <div class="test-grid">
-    <div class="test-card reveal">
-      <p class="test-quote">Katie is an absolute artist. My lashes look so natural and I get compliments every single day. She truly listens to exactly what you want.</p>
-      <div class="test-name">Sarah M. <span>·</span> Classic Natural</div>
-    </div>
-    <div class="test-card reveal">
-      <p class="test-quote">I was nervous for my first set but Katie made me feel completely at ease. The results were beyond what I imagined — I'm obsessed.</p>
-      <div class="test-name">Jessica L. <span>·</span> Hybrid Fullness</div>
-    </div>
-    <div class="test-card reveal">
-      <p class="test-quote">The cleanest, most relaxing lash experience I've had. The hybrid set she did was perfect for my eye shape. 10/10 every single time.</p>
-      <div class="test-name">Taylor R. <span>·</span> Hybrid Drama</div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-mark">&ldquo;</div>
+        <p class="test-quote">Katie is an absolute artist. My lashes look so natural and I get compliments every single day. She truly listens to exactly what you want.</p>
+        <div class="test-name">Sarah M. <span>·</span> Classic Natural</div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-mark">&ldquo;</div>
+        <p class="test-quote">I was nervous for my first set but Katie made me feel completely at ease. The results were beyond what I imagined — I'm obsessed.</p>
+        <div class="test-name">Jessica L. <span>·</span> Hybrid Fullness</div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-mark">&ldquo;</div>
+        <p class="test-quote">The cleanest, most relaxing lash experience I've had. The hybrid set she did was perfect for my eye shape. 10/10 every single time.</p>
+        <div class="test-name">Taylor R. <span>·</span> Hybrid Drama</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-left reveal-l">
-    <p class="label">Get in Touch</p>
-    <h2 class="contact-h2">Book Your <em>Appointment</em></h2>
-    <p class="contact-lead">Ready for your dream lashes? Fill out the form or reach out directly and Katie will get back to you.</p>
-
-    <div class="cinfo">
-      <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <div>
-        <div class="cinfo-label">Location</div>
-        <div class="cinfo-val">18205 Alderwood Mall Pkwy<br>Ste A #701<br>Lynnwood, WA 98037</div>
+  <div class="band contact-band reveal">
+    <span class="cl cl-tl">Get in Touch</span>
+    <span class="cl cl-tr">Lynnwood, WA</span>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="label">Book Your Visit</p>
+        <h2 class="contact-h2">Book Your <em>Appointment</em></h2>
+        <p class="contact-lead">Ready for your dream lashes? Fill out the form or reach out directly and Katie will get back to you.</p>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="cinfo-label">Location</div><div class="cinfo-val">18205 Alderwood Mall Pkwy, Ste A #701<br>Lynnwood, WA 98037</div></div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.15.99.42 1.96.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l1.09-1.09a2 2 0 0 1 2.11-.45c.85.28 1.82.55 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="cinfo-label">Phone / Text</div><div class="cinfo-val">(425) 377-6624</div></div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="cinfo-label">Email</div><div class="cinfo-val">lashstudiobykatie@gmail.com</div></div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.4"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><div class="cinfo-label">Hours</div><div class="cinfo-val">Mon &amp; Wed–Sat: 10:00am – 7:00pm<br>Tue &amp; Sun: Closed</div></div>
+        </div>
       </div>
-    </div>
-    <div class="cinfo">
-      <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.15.99.42 1.96.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l1.09-1.09a2 2 0 0 1 2.11-.45c.85.28 1.82.55 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-      <div>
-        <div class="cinfo-label">Phone / Text</div>
-        <div class="cinfo-val">(425) 377-6624</div>
+      <div class="form-card">
+        <p class="label" style="color:var(--cream-dim)">Send a Message</p>
+        <h3 class="form-title">Let's <em>Connect</em></h3>
+        <div class="form-2col">
+          <div class="form-field"><input type="text" placeholder="First Name"/></div>
+          <div class="form-field"><input type="text" placeholder="Last Name"/></div>
+        </div>
+        <div class="form-field"><input type="email" placeholder="Email Address"/></div>
+        <div class="form-field"><input type="tel" placeholder="Phone Number"/></div>
+        <div class="form-field">
+          <select>
+            <option value="">Select a Service</option>
+            <optgroup label="Classic Lashes">
+              <option>Classic — Half Set (55 lashes) · $75</option>
+              <option>Classic — Natural (90 lashes) · $120</option>
+              <option>Classic — Glam (130 lashes) · $140</option>
+              <option>Classic — Drama (160 lashes) · $160</option>
+            </optgroup>
+            <optgroup label="Hybrid Lashes">
+              <option>Hybrid — Natural · $140</option>
+              <option>Hybrid — Fullness · $160</option>
+              <option>Hybrid — Drama · $170</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option>Refill Appointment</option>
+              <option>Korean Lash Lift · $80</option>
+              <option>Lash Lift + Tint · $110</option>
+              <option>Lash Removal · $30</option>
+              <option>Other / Question</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-field"><textarea placeholder="Any questions, notes, or preferred dates?"></textarea></div>
+        <button class="form-btn" id="send-btn" onclick="handleFormSubmit(event)">Send Message</button>
+        <div id="form-success" style="display:none;margin-top:18px;padding:16px 20px;background:rgba(244,240,232,.08);border-radius:var(--r);font-size:.85rem;color:var(--cream);line-height:1.6">Message sent — Katie will be in touch within 24 hours.</div>
       </div>
-    </div>
-    <div class="cinfo">
-      <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div>
-        <div class="cinfo-label">Email</div>
-        <div class="cinfo-val">lashstudiobykatie@gmail.com</div>
-      </div>
-    </div>
-    <div class="cinfo">
-      <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-      <div>
-        <div class="cinfo-label">Hours</div>
-        <div class="cinfo-val">Mon: 10:00am – 7:00pm<br>Wed – Sat: 10:00am – 7:00pm<br>Tue &amp; Sun: Closed</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-right reveal-r">
-    <p class="label">Send a Message</p>
-    <h3 class="form-title">Let's <em>Connect</em></h3>
-    <div class="form-2col">
-      <div class="form-field"><input type="text" placeholder="First Name"/></div>
-      <div class="form-field"><input type="text" placeholder="Last Name"/></div>
-    </div>
-    <div class="form-field"><input type="email" placeholder="Email Address"/></div>
-    <div class="form-field"><input type="tel" placeholder="Phone Number"/></div>
-    <div class="form-field">
-      <select>
-        <option value="">Select a Service</option>
-        <optgroup label="Classic Lashes">
-          <option>Classic — Half Set (55 lashes) · $75</option>
-          <option>Classic — Natural (90 lashes) · $120</option>
-          <option>Classic — Glam (130 lashes) · $140</option>
-          <option>Classic — Drama (160 lashes) · $160</option>
-        </optgroup>
-        <optgroup label="Hybrid Lashes">
-          <option>Hybrid — Natural · $140</option>
-          <option>Hybrid — Fullness · $160</option>
-          <option>Hybrid — Drama · $170</option>
-        </optgroup>
-        <optgroup label="Other">
-          <option>Refill Appointment</option>
-          <option>Korean Lash Lift · $80</option>
-          <option>Lash Lift + Tint · $110</option>
-          <option>Lash Removal · $30</option>
-          <option>Other / Question</option>
-        </optgroup>
-      </select>
-    </div>
-    <div class="form-field"><textarea placeholder="Any questions, notes, or preferred dates?"></textarea></div>
-    <button class="form-btn" id="send-btn" onclick="handleFormSubmit(event)">Send Message</button>
-    <div id="form-success" style="display:none;margin-top:18px;padding:18px 22px;background:var(--paper);border-left:3px solid var(--accent);font-size:.85rem;color:var(--ink-soft);line-height:1.6">
-      Message sent — Katie will be in touch within 24 hours.
     </div>
   </div>
 </section>
 
 <!-- INSTAGRAM -->
-<section id="instagram">
-  <div class="ig-head reveal">
-    <p class="label">Follow Along</p>
-    <h2 class="ig-h2">On <em>Instagram</em></h2>
-    <p class="ig-lead">Real clients. Real transformations. Daily lash inspiration.</p>
-    <a href="https://www.instagram.com/lashstudiobykatie/" target="_blank" rel="noopener" class="ig-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-      @lashstudiobykatie
-    </a>
+<section class="ig-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">Follow Along</span>
+      <h2 class="sec-h2">On <em>Instagram</em></h2>
+      <p class="sec-lead">Real clients. Real transformations. Daily lash inspiration.</p>
+      <div style="margin-top:24px"><a href="https://www.instagram.com/lashstudiobykatie/" target="_blank" rel="noopener" class="btn-book" style="text-transform:lowercase;letter-spacing:.04em"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg> @lashstudiobykatie</a></div>
+    </div>
+    <div class="ig-grid reveal">
+      <div class="gi"><img src="assets/gallery/img_2058.jpeg" alt="Instagram lash post"/></div>
+      <div class="gi"><img src="assets/gallery/img_2146.jpeg" alt="Instagram lash post"/></div>
+      <div class="gi"><img src="assets/gallery/img_2147.jpeg" alt="Instagram lash post"/></div>
+      <div class="gi"><img src="assets/gallery/img_2150.jpeg" alt="Instagram lash post"/></div>
+      <div class="gi"><img src="assets/gallery/img_2167.jpeg" alt="Instagram lash post"/></div>
+      <div class="gi"><img src="assets/gallery/img_2185.jpeg" alt="Instagram lash post"/></div>
+    </div>
   </div>
-  <div class="ig-grid reveal">
-    <div class="gi"><img src="assets/gallery/img_2058.jpeg" alt="Instagram lash post"/></div>
-    <div class="gi"><img src="assets/gallery/img_2146.jpeg" alt="Instagram lash post"/></div>
-    <div class="gi"><img src="assets/gallery/img_2147.jpeg" alt="Instagram lash post"/></div>
-    <div class="gi"><img src="assets/gallery/img_2150.jpeg" alt="Instagram lash post"/></div>
-    <div class="gi"><img src="assets/gallery/img_2167.jpeg" alt="Instagram lash post"/></div>
-    <div class="gi"><img src="assets/gallery/img_2185.jpeg" alt="Instagram lash post"/></div>
+</section>
+
+<!-- WORDMARK -->
+<section class="wordmark reveal">
+  <div class="wordmark-band">
+    <span class="wm-cl l">Lash Studio</span>
+    <span class="wm-cl r">Lynnwood, WA · 2024</span>
+    <div class="wm-big">katie</div>
+    <div class="wm-sub">Handcrafted Lash Artistry</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand">Lash Studio <em>by Katie</em></div>
-      <div class="footer-tag">Handcrafted lash extensions · Lynnwood, WA</div>
-      <div class="footer-social">
-        <a class="soc-btn" href="https://www.instagram.com/lashstudiobykatie/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a class="soc-btn" href="#" aria-label="Facebook">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a class="soc-btn" href="#" aria-label="TikTok">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-        </a>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Lash Studio <em>by Katie</em></div>
+        <div class="footer-tag">Handcrafted lash extensions · Lynnwood, WA</div>
+        <div class="footer-social">
+          <a class="soc-btn" href="https://www.instagram.com/lashstudiobykatie/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a class="soc-btn" href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a class="soc-btn" href="#" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About Katie</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Info</div>
+        <ul class="footer-links">
+          <li><a href="#pricing">Booking Policy</a></li>
+          <li><a href="#pricing">Cancellation Policy</a></li>
+          <li><a href="#contact">Aftercare Guide</a></li>
+          <li><a href="#services">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Book</div>
+        <ul class="footer-links">
+          <li><a href="#contact">Schedule Appointment</a></li>
+          <li><a href="#contact">Gift Cards</a></li>
+        </ul>
+        <a class="footer-book" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener">Book Now</a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Navigate</div>
-      <ul class="footer-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About Katie</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Lash Studio by Katie · All rights reserved</div>
+      <div class="footer-copy">Lynnwood, WA · @lashstudiobykatie</div>
     </div>
-    <div>
-      <div class="footer-col-title">Info</div>
-      <ul class="footer-links">
-        <li><a href="#pricing">Booking Policy</a></li>
-        <li><a href="#pricing">Cancellation Policy</a></li>
-        <li><a href="#contact">Aftercare Guide</a></li>
-        <li><a href="#services">FAQ</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Book</div>
-      <ul class="footer-links">
-        <li><a href="#contact">Schedule Appointment</a></li>
-        <li><a href="#contact">Gift Cards</a></li>
-      </ul>
-      <a class="footer-book" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVFuGEO+H3iu9OyBfk3G/StkQct85KuJuR4HeEZbKpRN7JZD3m0LEm5FHBUmpCmqqSABPGqZVf1qCdUL/BWwxWfVNAhs0gRFstKIWAGpBD5oZxSmiiMEQt6QOHg9I8B2BLoZrw/vRkmulwEJbXEm732C6Su6edWwr6C4E0fR3KvdbXxdxNOYVQJgTfbeTTOCC4P306BQ9wyP8ULCek9CeICH5anXER/Dk12qlY4GTw8GQqu+KHo01k9ioJyilN7wzSXn6Tl4issJ3W0blea0SYiPz11Z1d0FQiRJt/K9gDkkzukv7AwCEeqHjo0qe0B1HghFWvdR4aOzVrzpqFXBbLPu5Bzt0nJoACckKY8EC/JU9GMifsgfgO3OkaQzfSD8d1+D8jf0tUv4XDUZSwTc3e6g19qvxRrAD4BPGrkenkdBbrAKb9DurXnnOeRpxYucCWZKlXONU3SFqklPI5r1MMTA=" target="_blank" rel="noopener">Book Now</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Lash Studio by Katie · All rights reserved</div>
-    <div class="footer-copy">Lynnwood, WA · @lashstudiobykatie</div>
   </div>
 </footer>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <div class="mm-top">
+    <span class="mm-brand">Lash Studio</span>
+    <button class="mm-close" id="mm-close" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="mm-links">
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#contact"><em>Contact</em></a>
+  </nav>
+  <div class="mm-foot"><span>Lynnwood, WA</span><span>@lashstudiobykatie</span></div>
+</div>
 
 <!-- BACK TO TOP -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8593;</button>
 
 <script>
-// ── Scroll reveal ──────────────────────────────────────
+// ── Scroll reveal ──
 const obs = new IntersectionObserver(
   entries => entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } }),
   { threshold: 0.12 }
 );
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach((el) => obs.observe(el));
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
 
-// ── Staggered reveal within groups ─────────────────────
-document.querySelectorAll('.svc-list, .gal-grid, .test-grid, .ig-grid').forEach(group => {
+// ── Staggered reveal within groups ──
+document.querySelectorAll('.svc-grid, .gal-grid, .test-grid, .ig-grid').forEach(group => {
   [...group.children].forEach((el,i) => { el.style.transitionDelay = (i % 4 * 0.07) + 's'; });
 });
 
-// ── Nav shrink + back-to-top ───────────────────────────
+// ── Nav shrink + back-to-top ──
 const backTop = document.getElementById('back-top');
 const mainNav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
@@ -772,17 +794,19 @@ window.addEventListener('scroll', () => {
   backTop.style.pointerEvents = y > 500 ? 'auto' : 'none';
 });
 
-// ── Mobile menu ────────────────────────────────────────
+// ── Mobile menu ──
 const menu = document.getElementById('mobile-menu');
 document.getElementById('burger').addEventListener('click', () => { menu.classList.add('open'); document.body.style.overflow='hidden'; });
 document.getElementById('mm-close').addEventListener('click', closeMenu);
 menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 function closeMenu(){ menu.classList.remove('open'); document.body.style.overflow=''; }
 
-// ── Smooth scroll for anchor links ─────────────────────
+// ── Smooth scroll for anchor links ──
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
-    const target = document.querySelector(link.getAttribute('href'));
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
       const navH = mainNav.offsetHeight;
@@ -792,17 +816,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// ── Contact form ───────────────────────────────────────
+// ── Contact form ──
 function handleFormSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('send-btn');
   const success = document.getElementById('form-success');
-  const inputs = document.querySelectorAll('.contact-right input, .contact-right select, .contact-right textarea');
+  const inputs = document.querySelectorAll('.form-card input, .form-card select, .form-card textarea');
   let valid = true;
   inputs.forEach(inp => {
     inp.style.borderColor = '';
     if (inp.type === 'email' || inp === inputs[0]) {
-      if (!inp.value.trim()) { inp.style.borderColor = 'var(--accent)'; valid = false; }
+      if (!inp.value.trim()) { inp.style.borderColor = 'var(--brown-lt)'; valid = false; }
     }
   });
   if (!valid) return;
@@ -816,11 +840,11 @@ function handleFormSubmit(e) {
   }, 1100);
 }
 
-// ── Gallery lightbox ───────────────────────────────────
+// ── Gallery lightbox ──
 const overlay = document.createElement('div');
 overlay.id = 'lightbox';
-overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:500;background:rgba(20,16,14,0.94);align-items:center;justify-content:center;cursor:zoom-out;padding:5vw;';
-overlay.innerHTML = '<img id="lb-img" alt="Enlarged lash work" style="max-width:90vw;max-height:90vh;object-fit:contain;"/>';
+overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:500;background:rgba(20,15,12,0.94);align-items:center;justify-content:center;cursor:zoom-out;padding:5vw;';
+overlay.innerHTML = '<img id="lb-img" alt="Enlarged lash work" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:15px;"/>';
 document.body.appendChild(overlay);
 overlay.addEventListener('click', () => { overlay.style.display = 'none'; document.body.style.overflow=''; });
 document.querySelectorAll('.gi img').forEach(img => {
